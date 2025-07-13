@@ -29,30 +29,29 @@ shape = SubResource("ConvexPolygonShape3D_rytg7")
 
 [node name="Car" parent="." instance=ExtResource("2_rytg7")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0, -0.976383, 0)
-visible = false
 
 [node name="WheelContainer" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.126733, -0.033699)
 
 [node name="WheelFL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
-transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01268, -0.253167, 1.10147)
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01268, -0.0615054, 1.10147)
 use_as_traction = true
 use_as_steering = true
 ROLLING_FRICTION = 10.0
 
 [node name="WheelFR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
-transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01434, -0.251189, -1.09853)
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01434, -0.0595277, -1.09853)
 use_as_traction = true
 use_as_steering = true
 ROLLING_FRICTION = 10.0
 
 [node name="WheelBL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
-transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.90083, -0.251829, 1.09853)
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.90083, -0.0601676, 1.09853)
 use_as_traction = true
 
 [node name="WheelBR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
-transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.89917, -0.249851, -1.10147)
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.89917, -0.0581899, -1.10147)
 use_as_traction = true
 
 [node name="Lights" type="Node3D" parent="."]

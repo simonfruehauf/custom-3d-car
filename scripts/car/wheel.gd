@@ -35,11 +35,8 @@ func _physics_process(delta: float) -> void:
 		if car.handbrake:
 			_apply_rolling_friction(collision_point, car.handbrake)
 			return
-		
 		if use_as_traction:
 			_acceleration(collision_point)
-		
-
 	else:
 		_wheel_spin(delta)
 
