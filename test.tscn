@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://s36kblml3gs3"]
+
+[ext_resource type="Texture2D" uid="uid://bbgo7v1oyvvdm" path="res://assets/grid.png" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://brmb2kujfw8nc" path="res://scripts/camera_3d.gd" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://dkulwcvcxule0" path="res://scenes/car/car.tscn" id="4_ppyta"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8uh7m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_6uqi0"]
+sky_material = SubResource("ProceduralSkyMaterial_8uh7m")
+
+[sub_resource type="Environment" id="Environment_ppyta"]
+background_mode = 2
+sky = SubResource("Sky_6uqi0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uh7m"]
+albedo_texture = ExtResource("1_37kl0")
+uv1_triplanar = true
+
+[node name="Test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppyta")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.973976, -0.15107, 0.168963, 0, 0.745476, 0.666532, -0.226651, 0.649187, -0.726076, 0, 0, 0)
+visible = false
+light_energy = 0.65
+shadow_enabled = true
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("target_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40927, 2.38367, -0.815103)
+script = ExtResource("3_6uqi0")
+target_node = NodePath("../Car2")
+rotation_speed = 0.1
+min_tilt_angle = -45.0
+max_tilt_angle = 5.0
+auto_rotate_delay = 1000.0
+auto_rotate_speed = 2.5
+movement_threshold = 1e+09
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera"]
+
+[node name="Camera3D" type="Camera3D" parent="Camera/SpringArm3D"]
+doppler_tracking = 2
+current = true
+size = 7.22406
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(124, 12, 204)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -21.8281, -3.17399, 25.1924)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(36, 12, 32)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 25.1924)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(12, 1, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 27.1298)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(12, 1, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 28.4319)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(12, 1, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 30.4319)
+material_override = SubResource("StandardMaterial3D_8uh7m")
+use_collision = true
+size = Vector3(12, 1, 1)
+
+[node name="Car2" parent="." instance=ExtResource("4_ppyta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
+WHEEL_RADIUS = 0.6

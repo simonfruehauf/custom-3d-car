@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=4 uid="uid://dlcba1gva4p57"]
+
+[ext_resource type="Script" uid="uid://crgkhx24gmt38" path="res://scripts/car/rb_wheel.gd" id="1_dtoma"]
+[ext_resource type="Texture2D" uid="uid://c3hyc0gyg5dys" path="res://assets/car/Car.png" id="2_e63y5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggfgw"]
+resource_name = "car8_mat"
+cull_mode = 2
+albedo_texture = ExtResource("2_e63y5")
+roughness = 0.894591
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_82ux0"]
+_surfaces = [{
+"aabb": AABB(-0.174707, -0.565367, -0.565367, 0.349415, 1.13073, 1.13073),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAAHAAoACgAHAAUACgAFAAsAAAAKAAsABQAMAAsABwAMAAUAAAALAAIACwANAAIACwAMAA0ABAAAAAIABAACAA0AAAAEAAYAAAAGAAcABgAEAA0ABwAOAAwABgANAA8ADgAHAAEAAQAHAAYADgAIAAwADgABAAgAAwANAAwAAwAMAAgAAwAPAA0AAQADAAgACQAGAA8AAQAGAAkACQAPAAMAAQAJAAMA"),
+"lods": [0.17433, PackedByteArray("AAAGAAcAAAAEAAYABAAAAAIAAAAHAAIABgAEAAIABwAFAAIABgACAAMAAwACAAUABwAIAAUAAwAFAAgABwABAAgAAQADAAgAAQAHAAYACQAGAAMAAQAGAAkAAQAJAAMA"), 0.43399, PackedByteArray("AAAEAAEAAQAEAAMABAAAAAIAAAABAAIABAACAAMAAQAFAAIAAwACAAUAAQADAAUA"), 0.554693, PackedByteArray("AAABAAIAAQADAAIAAAACAAMAAQAAAAMA")],
+"name": "car8_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AACzJLfZAAAAAEvbRyYAAP7/syS32QAA/v8dgQAAAAAAAAAA4X4AAP7/t9lL2wAAAABHJrMkAAAAALfZS9sAAP7/S9tHJgAAAAAdgQAAAAAAAOF+//8AAP7/4X7//wAA/v///x2BAAD//wAA4X4AAAAA/v8dgQAA/v9HJrMkAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l63od"]
+resource_name = "Car_Car8_010"
+_surfaces = [{
+"aabb": AABB(-0.174707, -0.565367, -0.565367, 0.349415, 1.13073, 1.13073),
+"attribute_data": PackedByteArray("HgWHVXIrh1UeBVRiBzVUYsZRh1XGUVRijwKEK8kNnkY2T4QrSBhUYjFIh1X9Q55GjwKEK+MoMQXjKNhR4ygxBf1DnkZIGIdVcitUYgc1h1WcPodVNk+EK8kNahD9Q2oQsw6HVbMOVGKzDlRisw6HVTFIh1UxSFRinD6HVTFIVGKcPlRiBzWHVZw+VGIHNVRi3SGHVXIrVGLdIVRiciuHVUgYh1XdIVRiSBhUYt0hh1X9Q2oQyQ2eRuMo2FHJDWoQ"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("BgAPABYABgAOAA8ABgAHAA4ACAAPAA4AFwAPAAgACAAOABAAGAAJABkAGAARAAkAAAAaAAIAAAAbABoAHAAFAB0AHAAEAAUAHgAfACAAHgAKAB8AIQAiACMAIQAUACIAAQADABIAAQATAAMAJAAlACYAJAAnACUAKAApACoAKAArACkACwAsABUACwAtACwACwAuAC0ALwAsAC0ADQAsAC8ALwAtAAwA"),
+"lods": [0.17433, PackedByteArray("BgAOAA8ABgAHAA4ACAAPAA4ACAAOABAAEQAJAAIAAAARAAIAEQASAAkAEQABABIAAQADABIAAQATAAMAEwAUAAMAFAAFAAMAFAAKAAUACgAEAAUACwANABUACwAMAA0A"), 0.43399, PackedByteArray("BgAHAAgAAQAJAAIAAAABAAIAAQADAAkAAQAKAAMACgAFAAMACgAEAAUACwAMAA0A"), 0.554693, PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMA")],
+"material": SubResource("StandardMaterial3D_ggfgw"),
+"name": "car8_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AACzJLfZncEAAEvbRyZ49P7/syS32Z3B/v8dgQAAePQAALMkt9n0zP7/syS32fTMAACzJLfZkhYAAAAA4X6SFgAAS9tHJpEW/v+32Uvbe8EAAAAA4X5T3/7/HYEAABzG/v+zJLfZHMb+/7fZS9sdxgAARyazJJIWAAC32UvbkhYAAB2BAACRFgAAt9lL23vB/v9L20cmePQAAB2BAAB49AAARyazJPf0/v9L20cmHMYAAOF+//+RFgAA/v8dgZIWAADhfv//e8H+/+F+//97wf7/4X7//53BAADhfv//ncEAAAAA4X70zP//AADhfvTMAABHJrMkU9///wAA4X5T3/7/RyazJFPfAAAdgQAA9/T+/0cmsyT39P7/HYEAAPf0AAD+/x2B3t7+/0vbRybe3v7///8dgd7eAABL20cm3t4AALfZS9uczP7///8dgZzM/v+32UvbnMwAAP7/HYGczP7///8dgR3G//8AAOF+Hcb+/0cmsyQdxv7/4X7//x3GghJ87efFFzqCEnzt58UXOsEkPdvBJD3bz+kXy8/pF8vP6RbLFO7qERUw6c+dRTAdnUUwHZxFMR3P6RfLz+kXy8/pFssU7uoR58UXOufFFzpUOqrFnUUwHc/pFsvP6RfLFO7qERTu6hGCEnztghJ87cEkPdvBJD3bFTDpzxUw6c8VMOnPVDqqxVQ6qsVUOqrFI9DbLyPQ2y8j0NsvI9DbL4nbdSSJ23Ukidt1JInbdSScRTEdnEUxHZxFMR2cRTEd")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_82ux0")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dtoma"]
+friction = 0.92
+bounce = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dtoma"]
+height = 0.35
+radius = 0.52
+
+[node name="Wheel" type="Generic6DOFJoint3D"]
+node_b = NodePath("RigidBody3D")
+angular_limit_x/enabled = false
+angular_motor_x/enabled = true
+script = ExtResource("1_dtoma")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_l63od")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_dtoma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-0.0010285, -0.999979, -0.00643655, 0.999973, -0.00107511, 0.0072399, -0.00724667, -0.00642893, 0.999953, 0, 0, 0)
+shape = SubResource("CylinderShape3D_dtoma")

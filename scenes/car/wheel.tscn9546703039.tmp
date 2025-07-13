@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21flfci42sg1"]
+
+[sub_resource type="GDScript" id="GDScript_ayi8a"]
+script/source = "extends RayCast3D
+class_name Wheel
+
+@onready var car: RigidBody3D = get_parent().get_parent() # Assuming Car is a RigidBody3D
+@onready var mesh: MeshInstance3D = %Mesh # Visual mesh for the wheel
+@export var use_as_traction: bool = false # Does this wheel apply engine force?
+@export var use_as_steering: bool = false # Does this wheel steer?
+
+@export var TIRE_GRIP: float = .0 # How much lateral grip the tire has
+@export var TIRE_LONGITUDINAL_GRIP: float = 10.0 # How much longitudinal grip (for acceleration/braking)
+
+@onready var initial_rotation_y: float = rotation.y # Store initial Y rotation for steering
+@onready var initial_position: Vector3 = position # Store initial local position for mesh offset
+
+var prev_spring_length: float = 0.0 # Used for damping calculation
+var wheel_contact_point_global: Vector3 # Global collision point on the ground
+
+func _physics_process(delta: float) -> void:
+	# Update raycast destination based on suspension length
+	# This should be done regardless of collision to ensure the raycast is always trying to reach the ground
+	# The raycast should point downwards from the wheel's attachment point on the car
+	target_position = Vector3(0, -(car.REST_DISTANCE + car.WHEEL_RADIUS), 0) # Raycast points down
+
+	if is_colliding():
+		# Get the collision point in global coordinates
+		wheel_contact_point_global = get_collision_point()
+
+		# Apply suspension forces
+		_apply_suspension_force(delta, wheel_contact_point_global)
+
+		# Apply traction force if this is a traction wheel
+		if use_as_traction:
+			_apply_traction_force(wheel_contact_point_global)
+
+		# Apply lateral (sideways) force for all wheels on the ground
+		# This is crucial for turning, as it simulates the friction resisting sideways slip
+		_apply_lateral_force(wheel_contact_point_global)
+	else:
+		# If not colliding, reset spring length and ensure mesh is at its default position
+		prev_spring_length = 0.0
+		mesh.position.y = initial_position.y # Reset mesh position if not on ground
+
+	# Handle steering for steering wheels (visual rotation and angle for lateral force)
+	if use_as_steering:
+		_update_steering_angle(delta)
+
+	# Update the visual mesh rotation to match the wheel's steering angle
+	# This assumes the mesh's pivot is at the center of the wheel
+	mesh.rotation.y = rotation.y - initial_rotation_y # Only apply the steering part of the rotation
+
+func _update_steering_angle(delta: float):
+	# Calculate the target steering angle based on car's input
+	var rad_angle_limit = deg_to_rad(car.MAX_STEER_ANGLE)
+	var target_steering_angle = car.steer_input * rad_angle_limit
+
+	# Smoothly interpolate the wheel's Y rotation towards the target angle
+	# We are rotating the entire RayCast3D node (the wheel's physics representation)
+	# so its global_basis.x and global_basis.z reflect the steered direction.
+	rotation.y = lerp(rotation.y, initial_rotation_y - target_steering_angle, 0.1)
+	# The 0.1 is a smoothing factor. Adjust as needed.
+
+func _apply_suspension_force(delta: float, contact_point: Vector3):
+	# Direction of suspension force (upwards relative to the car/wheel)
+	var suspension_direction := global_basis.y
+
+	# Distance from raycast origin to collision point
+	var distance_to_ground := get_collision_point().distance_to(global_position)
+
+	# Calculate current compression of the spring
+	# spring_length is how much the suspension is compressed from its rest position
+	var spring_length = clamp(distance_to_ground - car.WHEEL_RADIUS, 0.0, car.REST_DISTANCE)
+
+	# Spring force: proportional to compression
+	var spring_force = car.SPRING_STRENGTH * (car.REST_DISTANCE - spring_length)
+
+	# Damper force: proportional to the rate of compression/extension
+	var spring_velocity = (prev_spring_length - spring_length) / delta
+	var damper_force = car.SPRING_DAMP * spring_velocity
+
+	# Total suspension force
+	var total_suspension_force = (spring_force + damper_force)
+
+	# Apply the force to the car at the wheel's contact point
+	# The force is applied along the global Y axis of the wheel (upwards)
+	car.apply_force(suspension_direction * total_suspension_force, contact_point - car.global_position)
+
+	# Update previous spring length for next frame's damping calculation
+	prev_spring_length = spring_length
+
+	# Update the visual mesh position to reflect suspension compression
+	# The mesh moves along its local Y axis
+	mesh.position.y = initial_position.y - spring_length
+
+
+func _apply_traction_force(contact_point: Vector3):
+	# The forward direction of the wheel (this will be steered for front wheels)
+	var wheel_forward_dir = global_basis.z
+
+	# Calculate the desired engine force based on car input
+	var engine_force_magnitude = car.ENGINE_POWER * car.accel_input
+
+	# Apply the engine force along the wheel's forward direction
+	# The force is applied at the contact point relative to the car's center of mass
+	car.apply_force(wheel_forward_dir * engine_force_magnitude, contact_point - car.global_position)
+
+
+func _apply_lateral_force(contact_point: Vector3):
+	# Get the wheel's velocity at the contact point in global space
+	var wheel_world_velocity = car.linear_velocity + car.angular_velocity.cross(contact_point - car.global_position)
+
+	# Get the wheel's sideways direction (perpendicular to its forward direction)
+	# This will be global_basis.x if global_basis.z is forward
+	var wheel_sideways_dir = global_basis.x
+
+	# Calculate the lateral velocity component (how much the wheel is slipping sideways)
+	var lateral_velocity_magnitude = wheel_world_velocity.dot(wheel_sideways_dir)
+
+	# Calculate the lateral force to counteract the slip
+	# This force is proportional to the lateral velocity and the TIRE_GRIP
+	# It acts in the opposite direction of the lateral slip
+	var lateral_force = -wheel_sideways_dir * lateral_velocity_magnitude * TIRE_GRIP
+
+	# Apply the lateral force to the car at the contact point
+	car.apply_force(lateral_force, contact_point - car.global_position)
+
+# Helper function to get velocity at a specific point on the rigid body
+# (Already defined in your original code, kept for completeness)
+func _get_point_velocity(point: Vector3) -> Vector3:
+	return car.linear_velocity + car.angular_velocity.cross(point - car.global_position)
+"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ypdop"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.15
+
+[node name="Wheel" type="RayCast3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = SubResource("GDScript_ayi8a")
+TIRE_GRIP = 10.0
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ypdop")
+
+[node name="Debug" type="RayCast3D" parent="."]
+unique_name_in_owner = true

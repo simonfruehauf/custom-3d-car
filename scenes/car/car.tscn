@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkulwcvcxule0"]
+
+[ext_resource type="Script" uid="uid://5nddvny0l6mp" path="res://scripts/car/car.gd" id="1_yr3gr"]
+[ext_resource type="PackedScene" uid="uid://o1v7x8f85gin" path="res://assets/car/car.tscn" id="2_rytg7"]
+[ext_resource type="PackedScene" uid="uid://d21flfci42sg1" path="res://scenes/car/wheel.tscn" id="2_yhfra"]
+[ext_resource type="Script" uid="uid://2dkcppaxutdd" path="res://scripts/car/lights.gd" id="4_x7uf8"]
+[ext_resource type="AudioStream" uid="uid://gqmqlg1j2nl2" path="res://assets/car/audio/engine_loop.wav" id="5_tcn38"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rytg7"]
+points = PackedVector3Array(0.667754, -1.34645, -0.482508, -0.66801, -1.34645, -0.482508, 1.01907, -3.76736, -0.482774, 1.30961, -3.71006, -0.482774, 1.30961, 1.28586, -0.482774, -1.30986, 1.28586, -0.482774, -1.30986, -3.71006, -0.482774, -1.01932, -3.76736, -0.482774, 1.01907, -3.76736, -0.642921, 1.30961, -3.71006, -0.642921, 1.30961, 2.9606, -0.5744, -1.30986, 2.9606, -0.5744, -1.30986, -3.71006, -0.642921, -1.01932, -3.76736, -0.642921, 1.18703, -3.57176, -3.19573, 1.30961, -3.57176, -3.04806, 1.30961, 2.9606, -1.5005, -1.30986, 2.9606, -1.5005, -1.30986, -3.57176, -3.04806, -1.18729, -3.57176, -3.19573, 1.18703, 1.77847, -3.19573, 1.30961, 1.82457, -3.04806, -1.18729, 1.77847, -3.19573, -1.30986, 1.82457, -3.04806)
+
+[node name="Car" type="RigidBody3D"]
+mass = 150.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.98, 0)
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 0.4
+script = ExtResource("1_yr3gr")
+SPRING_STRENGTH = 2500.0
+ENGINE_POWER = 300.0
+BRAKE_FORCE = 400.0
+HANDBRAKE_FORCE = 3.0
+MAX_STEER_ANGLE = 20.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 1.06581e-14, -3.81165e-21, 0, -3.57628e-07, -1, -1.06581e-14, 1, -3.57628e-07, 0, -0.976383, 0)
+shape = SubResource("ConvexPolygonShape3D_rytg7")
+
+[node name="Car" parent="." instance=ExtResource("2_rytg7")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0, -0.976383, 0)
+visible = false
+
+[node name="WheelContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.126733, -0.033699)
+
+[node name="WheelFL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01268, -0.253167, 1.10147)
+use_as_traction = true
+use_as_steering = true
+ROLLING_FRICTION = 10.0
+
+[node name="WheelFR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01434, -0.251189, -1.09853)
+use_as_traction = true
+use_as_steering = true
+ROLLING_FRICTION = 10.0
+
+[node name="WheelBL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.90083, -0.251829, 1.09853)
+use_as_traction = true
+
+[node name="WheelBR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
+transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.89917, -0.249851, -1.10147)
+use_as_traction = true
+
+[node name="Lights" type="Node3D" parent="."]
+script = ExtResource("4_x7uf8")
+
+[node name="FL" type="SpotLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 4.25306e-05, 0.000334617, 4.22973e-05, 1, -0.000689949, -0.000334647, -0.000689935, -1, 1.01693, 0.0296581, 2.99271)
+light_color = Color(1, 1, 0.819608, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 12.0
+spot_angle = 61.0
+spot_angle_attenuation = 0.143587
+
+[node name="FL_Glow" type="OmniLight3D" parent="Lights/FL"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_color = Color(1, 1, 0.819608, 1)
+omni_range = 0.173
+
+[node name="FR" type="SpotLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 4.25306e-05, 0.000334617, 4.22973e-05, 1, -0.000689949, -0.000334647, -0.000689935, -1, -1.0191, 0.0293263, 2.99159)
+light_color = Color(1, 1, 0.819608, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 12.0
+spot_angle = 61.0
+spot_angle_attenuation = 0.143587
+
+[node name="FR_Glow" type="OmniLight3D" parent="Lights/FR"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_color = Color(1, 1, 0.819608, 1)
+omni_range = 0.173
+
+[node name="BL" type="OmniLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 4.25306e-05, 0.000334617, 4.22973e-05, 1, -0.000689949, -0.000334647, -0.000689935, -1, 0.884206, -0.183427, -3.62622)
+light_color = Color(1, 1, 0.819608, 1)
+light_energy = 0.2
+omni_range = 0.173
+
+[node name="BR" type="OmniLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 4.25306e-05, 0.000334617, 4.22973e-05, 1, -0.000689949, -0.000334647, -0.000689935, -1, -0.881897, -0.183246, -3.62722)
+light_color = Color(1, 1, 0.819608, 1)
+light_energy = 0.2
+omni_range = 0.173
+
+[node name="BrakeLightR" type="OmniLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.15485, -0.181, -3.627)
+light_color = Color(0.972549, 0.231373, 0.247059, 1)
+light_energy = 0.2
+omni_range = 0.173083
+
+[node name="BrakeLightL" type="OmniLight3D" parent="Lights"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.155, -0.181, -3.627)
+light_color = Color(0.972549, 0.231373, 0.247059, 1)
+light_energy = 0.2
+omni_range = 0.173083
+
+[node name="Sound" type="Node3D" parent="."]
+
+[node name="Engine" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("5_tcn38")
+volume_db = -8.0
+autoplay = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

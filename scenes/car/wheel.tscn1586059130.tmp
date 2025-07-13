@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21flfci42sg1"]
+
+[ext_resource type="Script" uid="uid://csmi2jhdlsv24" path="res://scripts/car/wheel.gd" id="1_ypdop"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ypdop"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.15
+
+[node name="Wheel" type="RayCast3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_ypdop")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ypdop")
+
+[node name="Debug" type="RayCast3D" parent="."]
+unique_name_in_owner = true

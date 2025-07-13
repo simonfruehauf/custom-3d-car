@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ubxc05dup1x"]
+
+[ext_resource type="Script" uid="uid://cydchb5oij1xc" path="res://scripts/car/nitro.gd" id="1_gayfu"]
+
+[node name="Nitro" type="Node3D"]
+script = ExtResource("1_gayfu")

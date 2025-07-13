@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://o1v7x8f85gin"]
+
+[ext_resource type="PackedScene" uid="uid://fgaox5410vs8" path="res://assets/car/Car.blend" id="1_s1cro"]
+[ext_resource type="Texture2D" uid="uid://cunmjohshfa2j" path="res://assets/car/Car_mail.png" id="2_y7uta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7uta"]
+albedo_texture = ExtResource("2_y7uta")
+texture_filter = 0
+
+[node name="Car" instance=ExtResource("1_s1cro")]
+
+[node name="Body" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_y7uta")
+
+[node name="WheelFR" parent="." index="4"]
+transform = Transform3D(0.999999, -0.00020645, -0.00106223, -0.00106071, 0.00723212, -0.999973, 0.000214134, 0.999974, 0.00723189, 0, 0, 0)
+visible = false
+
+[node name="WheelBR" parent="." index="5"]
+visible = false
+
+[node name="WheelC" parent="." index="6"]
+visible = false
+
+[node name="WheelBL" parent="." index="7"]
+visible = false
+
+[node name="WheelFL" parent="." index="8"]
+visible = false
