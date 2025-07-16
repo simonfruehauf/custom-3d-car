@@ -90,4 +90,6 @@ size = Vector3(12, 1, 1)
 
 [node name="Car2" parent="." instance=ExtResource("4_ppyta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
+mass = 1000.0
 WHEEL_RADIUS = 0.6
+HANDBRAKE_FORCE = 50.0

@@ -63,8 +63,8 @@ func _suspension(delta, point):
 
 func _acceleration(point):
 	var mult = car.ENGINE_POWER
-	if (car.accel_input * -global_transform.basis.z.dot(car.linear_velocity)) > 0: #reverse
-		mult = car.BRAKE_FORCE
+	if (car.accel_input * -global_transform.basis.z.dot(car.linear_velocity)) < 0: #reverse
+		mult = car.BRAKE_FORCE * car.ENGINE_POWER
 	var f = car.transform.basis.z * mult * car.accel_input 
 	car.apply_force(f, point-car.global_position)
 

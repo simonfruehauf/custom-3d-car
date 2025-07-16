@@ -10,18 +10,13 @@
 points = PackedVector3Array(0.667754, -1.34645, -0.482508, -0.66801, -1.34645, -0.482508, 1.01907, -3.76736, -0.482774, 1.30961, -3.71006, -0.482774, 1.30961, 1.28586, -0.482774, -1.30986, 1.28586, -0.482774, -1.30986, -3.71006, -0.482774, -1.01932, -3.76736, -0.482774, 1.01907, -3.76736, -0.642921, 1.30961, -3.71006, -0.642921, 1.30961, 2.9606, -0.5744, -1.30986, 2.9606, -0.5744, -1.30986, -3.71006, -0.642921, -1.01932, -3.76736, -0.642921, 1.18703, -3.57176, -3.19573, 1.30961, -3.57176, -3.04806, 1.30961, 2.9606, -1.5005, -1.30986, 2.9606, -1.5005, -1.30986, -3.57176, -3.04806, -1.18729, -3.57176, -3.19573, 1.18703, 1.77847, -3.19573, 1.30961, 1.82457, -3.04806, -1.18729, 1.77847, -3.19573, -1.30986, 1.82457, -3.04806)
 
 [node name="Car" type="RigidBody3D"]
-mass = 150.0
+mass = 1000.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -0.98, 0)
 contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 0.4
 script = ExtResource("1_yr3gr")
-SPRING_STRENGTH = 2500.0
-ENGINE_POWER = 300.0
-BRAKE_FORCE = 400.0
-HANDBRAKE_FORCE = 3.0
-MAX_STEER_ANGLE = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 1.06581e-14, -3.81165e-21, 0, -3.57628e-07, -1, -1.06581e-14, 1, -3.57628e-07, 0, -0.976383, 0)
@@ -36,23 +31,23 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.
 
 [node name="WheelFL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
 transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01268, -0.0615054, 1.10147)
-use_as_traction = true
 use_as_steering = true
-ROLLING_FRICTION = 10.0
+TIRE_GRIP = 4000.0
 
 [node name="WheelFR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
 transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, -2.01434, -0.0595277, -1.09853)
-use_as_traction = true
 use_as_steering = true
-ROLLING_FRICTION = 10.0
+TIRE_GRIP = 4000.0
 
 [node name="WheelBL" parent="WheelContainer" instance=ExtResource("2_yhfra")]
 transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.90083, -0.0601676, 1.09853)
 use_as_traction = true
+TIRE_GRIP = 4000.0
 
 [node name="WheelBR" parent="WheelContainer" instance=ExtResource("2_yhfra")]
 transform = Transform3D(-0.000753599, -0.000341151, 1, 0.000898975, 1, 0.000341854, -0.999999, 0.000899242, -0.00075328, 1.89917, -0.0581899, -1.10147)
 use_as_traction = true
+TIRE_GRIP = 4000.0
 
 [node name="Lights" type="Node3D" parent="."]
 script = ExtResource("4_x7uf8")

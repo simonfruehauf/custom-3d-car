@@ -1,16 +1,23 @@
 extends RigidBody3D
 class_name  Car
-@export var SPRING_STRENGTH := 2000.0
-@export var SPRING_DAMP := 100
+@export_category("Spring")
+@export_range(0.5, 2.0, 0.1) var SPRING_STIFFNESS: float = 1.0
+var SPRING_STRENGTH := 20000.0 * SPRING_STIFFNESS
+@export_range(0.5, 2.0, 0.1) var SPRING_DAMPENING: float= 1.0
+var SPRING_DAMP := 600 * SPRING_DAMPENING
 @export var REST_DISTANCE := 0.5
+@export_category("Wheels")
 @export var WHEEL_RADIUS := 0.55
-@export var WHEEL_WIDTH := 0.2
 
-@export var ENGINE_POWER: float = 200.0
-@export var BRAKE_FORCE: float = 250.0
-@export var HANDBRAKE_FORCE: float = 2.0
+@export_category("Engine")
+@export var HORSEPOWER: = 200.0
+var ENGINE_POWER: float = 15 * HORSEPOWER
+## Multiplier for ENGINE_POWER when going in reverse.
+@export_range(0.5, 2.0, 0.1) var BRAKE_FORCE: float = 1.5
+@export_range(1.0, 4.0, 0.1) var HANDBRAKE_FORCE: float = 3.0
 
 @onready var engine_audio: AudioStreamPlayer3D = $Sound/Engine
+@export_category("Engine")
 @export var MAX_STEER_ANGLE: float = 30.0
 
 var accel_input: float
