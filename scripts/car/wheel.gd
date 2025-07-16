@@ -4,11 +4,22 @@ class_name Wheel
 @onready var mesh: MeshInstance3D = %Mesh
 var mesh_rotation_x: float = 0.0
 
+@export_category("Wheel Configuration")
+## Whether this wheel provides acceleration/braking force. Usually true for rear wheels
 @export var use_as_traction: bool = false
+## Whether this wheel turns when steering. Usually true for front wheels
 @export var use_as_steering: bool = false
 
-@export var TIRE_GRIP: float = 20.0
+@export_category("Tire Physics")
+## Sideways grip strength for cornering. Higher values = better cornering grip, less sliding
+@export_range(0.5, 2.0, 0.1) var GRIP: float = 1.0
+var TIRE_GRIP = 4000 * GRIP
+## Grip falloff.
+@export_range(0.01, 0.1, 0.01) var GRIP_FALLOFF: float =  0.05
+## Resistance to forward/backward rolling. Higher values = more drag, slower coasting
 @export var ROLLING_FRICTION: float = 20.0
+## Maximum sideways force the tire can provide before slipping. Higher values = more grip at high speeds
+@export var MAX_LATERAL_FORCE: float = 8000.0
 
 @onready var rot = rotation
 @onready var pos = position
@@ -18,12 +29,14 @@ var last_rot_vel: = 0.0
 var prev_spring_length: float = 0.0
 var wheel_point: Vector3
 
+func _ready() -> void:
+	print(TIRE_GRIP)
+
 func _physics_process(delta: float) -> void:
-	#rotate
 	if use_as_steering: 
 		_steer(delta)
 	if is_colliding():
-		## Collision point in GLOBAL coordinates
+		#NOTE get_collision_point returns global position
 		var collision_point = get_collision_point()
 		wheel_point = collision_point + Vector3(0, car.WHEEL_RADIUS, 0)
 		_apply_z_force(collision_point)
@@ -77,12 +90,21 @@ func _apply_z_force(point: Vector3):
 	var z_force = dir.dot(tire_world_vel) * car.mass
 	car.apply_force(-dir * z_force, point-car.global_position)
 
-func _apply_lateral_force(point: Vector3): # sideways, to steer
+func _apply_lateral_force(point: Vector3): # lateral = sideways, to steer and oppose sliding
 	var wheel_world_velocity = car.linear_velocity + car.angular_velocity.cross(point - car.global_position)
 	var wheel_sideways_dir = global_basis.x
 	var lateral_velocity_magnitude = wheel_world_velocity.dot(wheel_sideways_dir)
-	var lateral_force = -wheel_sideways_dir * lateral_velocity_magnitude * TIRE_GRIP * 3.0
-	car.apply_force(lateral_force, point - car.global_position)
+	# Desired lateral force = what the tire "wants" to do
+	var desired_lateral_force = -lateral_velocity_magnitude * TIRE_GRIP
+	# Gotta apply speed-dependent grip reduction (tires lose grip at high speeds), 
+	# otherwise the car slows down massively in turns & has infinite grip 
+	var speed = car.linear_velocity.length()
+	var grip_factor = 1.0 / (1.0 + speed * GRIP_FALLOFF) 
+	
+	# Clamp to maximum tire force (simulates tire slip)
+	var max_force = MAX_LATERAL_FORCE * grip_factor
+	var lateral_force = clamp(desired_lateral_force, -max_force, max_force)
+	car.apply_force(wheel_sideways_dir * lateral_force, point - car.global_position)
 
 func _apply_rolling_friction(point: Vector3, handbrake: bool = false):
 	var wheel_forward_dir = global_basis.z
@@ -91,7 +113,7 @@ func _apply_rolling_friction(point: Vector3, handbrake: bool = false):
 	var longitudinal_velocity_magnitude = wheel_world_velocity.dot(wheel_forward_dir)
 	total_longitudinal_force = -longitudinal_velocity_magnitude * ROLLING_FRICTION 
 	if handbrake:
-		total_longitudinal_force *= car.HANDBRAKE_FORCE
+		total_longitudinal_force *= car.HANDBRAKE_FORCE 
 	car.apply_force(wheel_forward_dir * total_longitudinal_force, point - car.global_position)
 
 ## Returns angular wheel speed (good for engine sound)

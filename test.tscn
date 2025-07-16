@@ -35,7 +35,7 @@ shadow_enabled = true
 [node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("target_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40927, 2.38367, -0.815103)
 script = ExtResource("3_6uqi0")
-target_node = NodePath("../Car2")
+target_node = NodePath("../Car")
 rotation_speed = 0.1
 min_tilt_angle = -45.0
 max_tilt_angle = 5.0
@@ -88,8 +88,5 @@ material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="Car2" parent="." instance=ExtResource("4_ppyta")]
+[node name="Car" parent="." instance=ExtResource("4_ppyta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
-mass = 1000.0
-WHEEL_RADIUS = 0.6
-HANDBRAKE_FORCE = 50.0

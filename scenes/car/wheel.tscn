@@ -52,7 +52,6 @@ height = 0.15
 [node name="Wheel" type="RayCast3D"]
 debug_shape_custom_color = Color(0.602154, 0, 0.249477, 1)
 script = ExtResource("1_ypdop")
-TIRE_GRIP = 100.0
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
