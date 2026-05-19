@@ -20,14 +20,14 @@ var SPRING_DAMP := 600 * SPRING_DAMPENING
 
 @export_category("Engine")
 ## Engine power in horsepower. Higher values = more acceleration force.
-@export var HORSEPOWER: = 200.0
+@export var HORSEPOWER := 200.0
 ## Actual force multiplier applied for acceleration. Calculated from HORSEPOWER.
 var ENGINE_POWER: float = 15 * HORSEPOWER
 ## Multiplier for ENGINE_POWER when going in reverse. Higher values = stronger braking.
 @export_range(0.5, 2.0, 0.1) var BRAKE_FORCE: float = 1.5
 ## Force multiplier when handbrake is engaged. Higher values = stronger handbrake effect
 @export_range(1.0, 4.0, 0.1) var HANDBRAKE: float = 3.0
-var HANDBRAKE_FORCE: float = HANDBRAKE * 5.0
+var HANDBRAKE_FORCE: float = HANDBRAKE * 4.0
 @onready var engine_audio: AudioStreamPlayer3D = $Sound/Engine
 
 @export_category("Steering")
@@ -55,6 +55,16 @@ var steer_input: float
 ## Whether handbrake is currently engaged.
 var handbrake: bool = false
 
+# Speed variables
+var speed_kmh: float = 0.0
+var speed_mph: float = 0.0
+
+func _physics_process(delta: float) -> void:
+	var fwd = -transform.basis.z  
+	var forward_speed_mps = fwd.dot(linear_velocity) * -1.0 
+	speed_kmh = forward_speed_mps * 3.6
+	speed_mph = forward_speed_mps * 2.237
+
 func _process(delta: float) -> void:
 	accel_input = Input.get_axis("reverse", "accelerate")
 	steer_input = Input.get_axis("steer_left", "steer_right")
@@ -63,11 +73,10 @@ func _process(delta: float) -> void:
 		Helper.play_single_sound(
 			"res://assets/car/audio/handbrake_pull.wav" if handbrake
 			else "res://assets/car/audio/handbrake_release.wav",
-			self)
+			self )
 	
 	_handle_transmission(delta)
 	_engine_sound(delta)
-	print(current_gear, "th gear")
 
 func _handle_transmission(_delta: float):
 	# Since car.transform.basis.z is the acceleration direction, it is the forward direction.
@@ -114,8 +123,8 @@ func _on_body_entered(_body: Node) -> void:
 	# Play different crash sounds based on impact velocity
 	if abs(self.linear_velocity.length()) > 10:
 		#INFO This can be replaced with Helper.play_sound(), providing an array for random picking.		
-		Helper.play_single_sound("res://assets/car/audio/crash_hard.wav", self)
+		Helper.play_single_sound("res://assets/car/audio/crash_hard.wav", self )
 	elif abs(self.linear_velocity.length()) > 5:
-		Helper.play_single_sound("res://assets/car/audio/crash_mid.wav", self)
+		Helper.play_single_sound("res://assets/car/audio/crash_mid.wav", self )
 	elif abs(self.linear_velocity.length()) > 0.4:
-		Helper.play_single_sound("res://assets/car/audio/crash_light.wav", self)
+		Helper.play_single_sound("res://assets/car/audio/crash_light.wav", self )

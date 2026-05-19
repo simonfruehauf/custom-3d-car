@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbgo7v1oyvvdm" path="res://assets/grid.png" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://brmb2kujfw8nc" path="res://scripts/camera_3d.gd" id="3_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://dkulwcvcxule0" path="res://scenes/car/car.tscn" id="4_ppyta"]
+[ext_resource type="PackedScene" uid="uid://cb8qfr6dvbp7v" path="res://scenes/speedometer.tscn" id="4_ykrsh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8uh7m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -89,3 +90,6 @@ size = Vector3(12, 1, 1)
 
 [node name="Car" parent="." unique_id=1975516536 instance=ExtResource("4_ppyta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
+
+[node name="speedometer" parent="." unique_id=587327498 node_paths=PackedStringArray("car") instance=ExtResource("4_ykrsh")]
+car = NodePath("../Car")
