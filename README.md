@@ -5,9 +5,9 @@ This project is a demonstration of a custom car physics implementation in the Go
 ## Features
 
 *   **Detailed Wheel Simulation:** Each wheel is individually simulated with:
-    *   **Suspension:** A spring and damper system for each wheel to handle bumps and uneven terrain.
-    *   **Traction and Steering:** Realistic acceleration and steering forces are applied to the wheels.
-    *   **Friction:** Rolling friction and lateral friction are simulated to provide a realistic driving feel.
+	*   **Suspension:** A spring and damper system for each wheel to handle bumps and uneven terrain.
+	*   **Traction and Steering:** Realistic acceleration and steering forces are applied to the wheels.
+	*   **Friction:** Rolling friction and lateral friction are simulated to provide a realistic driving feel.
 *   **Dynamic Camera:** An orbiting camera that follows the car and can be controlled with the mouse. It automatically rotates to follow the car's direction when moving.
 *   **Sound Effects:** The simulation includes some engine sounds that change with speed and acceleration, as well as collision sounds.
 

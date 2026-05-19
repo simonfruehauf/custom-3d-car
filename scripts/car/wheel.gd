@@ -76,8 +76,24 @@ func _suspension(delta, point):
 
 func _acceleration(point):
 	var mult = car.ENGINE_POWER
-	if (car.accel_input * -global_transform.basis.z.dot(car.linear_velocity)) < 0: #reverse
+	
+	# Get the current gear ratio
+	var current_ratio = 0.0
+	if car.current_gear == -1:
+		current_ratio = car.reverse_ratio
+	elif car.current_gear > 0:
+		current_ratio = car.gear_ratios[car.current_gear - 1]
+		
+	# Apply gear multiplier (scaled down slightly to preserve original tuning balance)
+	mult *= current_ratio
+	
+	# Rev limiter - cut power if we exceed max RPM
+	if car.engine_rpm > car.max_rpm:
+		mult = 0.0
+		
+	if (car.accel_input * -global_transform.basis.z.dot(car.linear_velocity)) < 0: #braking
 		mult = car.BRAKE_FORCE * car.ENGINE_POWER
+		
 	var f = car.transform.basis.z * mult * car.accel_input 
 	car.apply_force(f, point-car.global_position)
 

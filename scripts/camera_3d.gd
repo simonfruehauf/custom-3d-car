@@ -1,15 +1,15 @@
 # camera_orbit.gd
 extends Node3D
 
-@export var target_node: Node3D # The node the camera will orbit around (e.g., your car)
-@export var spring_arm_length: float = 10.0 # Length of the SpringArm3D (camera's desired distance from target)
-@export var rotation_speed: float = 0.2 # How fast the camera rotates with mouse input
-@export var min_tilt_angle: float = -90.0 # Minimum vertical angle (looking up/down) in degrees
-@export var max_tilt_angle: float = 90.0 # Maximum vertical angle (looking up/down) in degrees
+@export var target_node: Node3D ## The node the camera will orbit around (e.g., your car)
+@export var spring_arm_length: float = 10.0 ## Length of the SpringArm3D (camera's desired distance from target)
+@export var rotation_speed: float = 0.2 ## How fast the camera rotates with mouse input
+@export var min_tilt_angle: float = -90.0 ## Minimum vertical angle (looking up/down) in degrees
+@export var max_tilt_angle: float = 90.0 ## Maximum vertical angle (looking up/down) in degrees
 
-@export var auto_rotate_delay: float = 2.0 # Time in seconds after last manual input before auto-rotation kicks in
-@export var auto_rotate_speed: float = 2.0 # Speed of auto-rotation (higher value means faster snap to car's direction)
-@export var movement_threshold: float = 0.5 # Minimum linear velocity for the car to be considered "moving"
+@export var auto_rotate_delay: float = 2.0 ## Time in seconds after last manual input before auto-rotation kicks in
+@export var auto_rotate_speed: float = 2.0 ## Speed of auto-rotation (higher value means faster snap to car's direction)
+@export var movement_threshold: float = 0.5 ## Minimum linear velocity for the car to be considered "moving"
 
 var current_yaw: float = 0.0 # Horizontal rotation (around Y-axis)
 var current_pitch: float = 0.0 # Vertical rotation (around X-axis)

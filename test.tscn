@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s36kblml3gs3"]
+[gd_scene format=3 uid="uid://s36kblml3gs3"]
 
 [ext_resource type="Texture2D" uid="uid://bbgo7v1oyvvdm" path="res://assets/grid.png" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://brmb2kujfw8nc" path="res://scripts/camera_3d.gd" id="3_6uqi0"]
@@ -21,18 +21,17 @@ glow_enabled = true
 albedo_texture = ExtResource("1_37kl0")
 uv1_triplanar = true
 
-[node name="Test" type="Node3D"]
+[node name="Test" type="Node3D" unique_id=951472053]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1152316453]
 environment = SubResource("Environment_ppyta")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=813785393]
 transform = Transform3D(-0.973976, -0.15107, 0.168963, 0, 0.745476, 0.666532, -0.226651, 0.649187, -0.726076, 0, 0, 0)
-visible = false
-light_energy = 0.65
+light_energy = 0.2
 shadow_enabled = true
 
-[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("target_node")]
+[node name="Camera" type="Node3D" parent="." unique_id=1887942032 node_paths=PackedStringArray("target_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40927, 2.38367, -0.815103)
 script = ExtResource("3_6uqi0")
 target_node = NodePath("../Car")
@@ -41,52 +40,52 @@ min_tilt_angle = -45.0
 max_tilt_angle = 5.0
 auto_rotate_delay = 1000.0
 auto_rotate_speed = 2.5
-movement_threshold = 1e+09
+movement_threshold = 1000000000.0
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Camera"]
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera" unique_id=1615983963]
 
-[node name="Camera3D" type="Camera3D" parent="Camera/SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="Camera/SpringArm3D" unique_id=1028888893]
 doppler_tracking = 2
 current = true
 size = 7.22406
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=252550260]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D" unique_id=449631307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
-size = Vector3(124, 12, 204)
+size = Vector3(1240, 12, 2040)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D" unique_id=1373702301]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -21.8281, -3.17399, 25.1924)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(36, 12, 32)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node3D" unique_id=2107438650]
 transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 25.1924)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Node3D" unique_id=857897966]
 transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 27.1298)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Node3D" unique_id=1035687219]
 transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 28.4319)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Node3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Node3D" unique_id=1103142478]
 transform = Transform3D(1, 0, 0, 0, 0.702004, 0.712173, 0, -0.712173, 0.702004, 30.2207, -0.285672, 30.4319)
 material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="Car" parent="." instance=ExtResource("4_ppyta")]
+[node name="Car" parent="." unique_id=1975516536 instance=ExtResource("4_ppyta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
