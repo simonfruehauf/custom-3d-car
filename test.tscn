@@ -1,9 +1,25 @@
 [gd_scene format=3 uid="uid://s36kblml3gs3"]
 
 [ext_resource type="Texture2D" uid="uid://bbgo7v1oyvvdm" path="res://assets/grid.png" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://dpdgk7qqp6g7h" path="res://assets/car/sedan/sedan_police.blend" id="2_g14j6"]
 [ext_resource type="Script" uid="uid://brmb2kujfw8nc" path="res://scripts/camera_3d.gd" id="3_6uqi0"]
-[ext_resource type="PackedScene" uid="uid://dkulwcvcxule0" path="res://scenes/car/car.tscn" id="4_ppyta"]
+[ext_resource type="Texture2D" uid="uid://b33rk4vtsj7s0" path="res://assets/car/sedan/sedan_police.png" id="3_vbegm"]
+[ext_resource type="PackedScene" uid="uid://o1v7x8f85gin" path="res://assets/car/postcar/car.tscn" id="4_vbegm"]
 [ext_resource type="PackedScene" uid="uid://cb8qfr6dvbp7v" path="res://scenes/speedometer.tscn" id="4_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://j3x2qme0wdpq" path="res://scenes/car/variations/sedan_car.tscn" id="5_ykrsh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ehkex"]
+points = PackedVector3Array(-1.23162, -2.0229135, -1.1995364, -1.23162, -1.8206377, -1.01672, -1.23162, 1.2106419, -1.1995364, -1.1518106, -1.9814577, -1.4370346, -1.1518106, -3.4467072, -1.2821302, -1.2140185, -3.5539205, -0.811378, -1.2299322, -2.057222, -0.97362757, -1.23162, -1.3960726, -0.8681817, -1.23162, 1.2106419, -0.8681817, -1.2140185, 3.5536118, -0.7797116, -1.1518106, 3.4321032, -1.2142271, -1.1518106, 1.2106419, -1.4370346, -0.87500954, -1.3503282, -2.019109, -0.00024104118, -3.5017433, -1.2821302, -0.00024104118, -3.637547, -0.811378, -0.00024104118, -1.4117973, -2.019109, -1.179539, -3.523186, -0.55021167, -1.1720643, -1.1652064, -0.35172534, -1.2205286, -1.31602, -0.77089727, -1.1720643, 1.2106419, -0.35172534, -1.179539, 3.5221624, -0.47251475, -0.00024104118, 3.6643987, -0.7797116, -0.00024104118, 3.5278802, -1.2142271, -0.00024104118, 0.5151844, -2.019109, -0.87500954, 0.41011524, -2.019109, 1.1515695, -3.4467072, -1.2821302, -0.00024104118, -3.6018093, -0.55021167, 1.2137774, -3.5539205, -0.811378, 1.1790568, -3.523186, -0.55021167, 0.8747684, -1.3503282, -2.019109, 1.1718234, -1.1652064, -0.35172534, -1.1674831, 1.4915409, -0.35156202, -0.00024104118, 3.6279464, -0.47251475, 1.1790568, 3.5221624, -0.47251475, 1.2137774, 3.5536118, -0.7797116, 1.1515695, 3.4321032, -1.2142271, 0.8747684, 0.41011524, -2.019109, 1.1515695, -1.9814577, -1.4370346, 1.23162, -2.0229135, -1.1995364, 1.2296911, -2.057222, -0.97362757, 1.23162, -1.3960726, -0.8681817, 1.1718234, 1.2106419, -0.35172534, 1.1672422, 1.4915409, -0.35156202, 1.23162, 1.2106419, -0.8681817, 1.23162, 1.2106419, -1.1995364, 1.1515695, 1.2106419, -1.4370346, 1.23162, -1.8206377, -1.01672)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xersf"]
+resource_name = "car8_mat"
+cull_mode = 2
+albedo_texture = ExtResource("3_vbegm")
+roughness = 0.89459074
+texture_filter = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xersf"]
+points = PackedVector3Array(0.6677538, -1.3464513, -0.48250794, -0.6680101, -1.3464513, -0.48250794, 1.0190682, -3.767357, -0.48277354, 1.3096077, -3.7100616, -0.48277354, 1.3096077, 1.2858555, -0.48277354, -1.309864, 1.2858555, -0.48277354, -1.309864, -3.7100616, -0.48277354, -1.0193245, -3.767357, -0.48277354, 1.0190682, -3.767357, -0.64292145, 1.3096077, -3.7100616, -0.64292145, 1.3096077, 2.960601, -0.5744004, -1.309864, 2.960601, -0.5744004, -1.309864, -3.7100616, -0.64292145, -1.0193245, -3.767357, -0.64292145, 1.1870325, -3.5717616, -3.195729, 1.3096077, -3.5717616, -3.0480635, 1.3096077, 2.960601, -1.500497, -1.309864, 2.960601, -1.500497, -1.309864, -3.5717616, -3.0480635, -1.1872886, -3.5717616, -3.195729, 1.1870325, 1.7784665, -3.195729, 1.3096077, 1.8245666, -3.0480635, -1.1872886, 1.7784665, -3.195729, -1.309864, 1.8245666, -3.0480635)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8uh7m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -23,6 +39,34 @@ albedo_texture = ExtResource("1_37kl0")
 uv1_triplanar = true
 
 [node name="Test" type="Node3D" unique_id=951472053]
+
+[node name="speedometer" parent="." unique_id=587327498 node_paths=PackedStringArray("car") instance=ExtResource("4_ykrsh")]
+offset_bottom = 6.1035156e-05
+car = NodePath("../Car")
+
+[node name="StaticCar" type="RigidBody3D" parent="." unique_id=1436109122]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -8.122822, 1.637136, -7.9631805e-05)
+mass = 700.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticCar" unique_id=1554877036]
+shape = SubResource("ConvexPolygonShape3D_ehkex")
+
+[node name="sedan_police" parent="StaticCar" unique_id=1301119601 instance=ExtResource("2_g14j6")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Car5_Police_003" parent="StaticCar/sedan_police" index="3" unique_id=356548706]
+surface_material_override/0 = SubResource("StandardMaterial3D_xersf")
+
+[node name="StaticCar2" type="RigidBody3D" parent="." unique_id=2125274611]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -8.122822, 1.637136, -8.659647)
+mass = 1000.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticCar2" unique_id=1437030949]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, -3.1391647e-07, 0, 3.1391647e-07, 0.99999994, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_xersf")
+
+[node name="Car" parent="StaticCar2" unique_id=876219567 instance=ExtResource("4_vbegm")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1152316453]
 environment = SubResource("Environment_ppyta")
@@ -88,8 +132,7 @@ material_override = SubResource("StandardMaterial3D_8uh7m")
 use_collision = true
 size = Vector3(12, 1, 1)
 
-[node name="Car" parent="." unique_id=1975516536 instance=ExtResource("4_ppyta")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4023, 1.45631, 12.6309)
+[node name="Car" parent="." unique_id=1833403387 instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0430641, 0)
 
-[node name="speedometer" parent="." unique_id=587327498 node_paths=PackedStringArray("car") instance=ExtResource("4_ykrsh")]
-car = NodePath("../Car")
+[editable path="StaticCar/sedan_police"]

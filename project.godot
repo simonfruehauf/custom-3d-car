@@ -24,9 +24,7 @@ Helper="*res://scripts/helper.gd"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=800
-window/stretch/scale=3.0
+window/stretch/mode="canvas_items"
 
 [input]
 

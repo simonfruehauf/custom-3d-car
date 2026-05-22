@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://d21flfci42sg1"]
+[gd_scene format=4 uid="uid://d21flfci42sg1"]
 
 [ext_resource type="Script" uid="uid://csmi2jhdlsv24" path="res://scripts/car/wheel.gd" id="1_ypdop"]
-[ext_resource type="Texture2D" uid="uid://c3hyc0gyg5dys" path="res://assets/car/Car.png" id="2_l63od"]
+[ext_resource type="Texture2D" uid="uid://c3hyc0gyg5dys" path="res://assets/car/postcar/Car.png" id="2_l63od"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggfgw"]
 resource_name = "car8_mat"

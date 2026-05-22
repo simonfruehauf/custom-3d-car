@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3hyc0gyg5dys"
-path.s3tc="res://.godot/imported/Car.png-8de746ef6f75337dbb269a0703e67821.s3tc.ctex"
+uid="uid://dyj57ernwq8c2"
+path.s3tc="res://.godot/imported/Car_grey.png-762ae6f6d0a0a2c40f98486dd3364a93.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/car/Car.png"
-dest_files=["res://.godot/imported/Car.png-8de746ef6f75337dbb269a0703e67821.s3tc.ctex"]
+source_file="res://assets/car/postcar/Car_grey.png"
+dest_files=["res://.godot/imported/Car_grey.png-762ae6f6d0a0a2c40f98486dd3364a93.s3tc.ctex"]
 
 [params]
 

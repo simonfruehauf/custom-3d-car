@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://o1v7x8f85gin"]
 
-[ext_resource type="PackedScene" uid="uid://fgaox5410vs8" path="res://assets/car/Car.blend" id="1_s1cro"]
-[ext_resource type="Texture2D" uid="uid://cunmjohshfa2j" path="res://assets/car/Car_mail.png" id="2_y7uta"]
+[ext_resource type="PackedScene" uid="uid://fgaox5410vs8" path="res://assets/car/postcar/Car.blend" id="1_s1cro"]
+[ext_resource type="Texture2D" uid="uid://cunmjohshfa2j" path="res://assets/car/postcar/Car_mail.png" id="2_y7uta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7uta"]
 albedo_texture = ExtResource("2_y7uta")

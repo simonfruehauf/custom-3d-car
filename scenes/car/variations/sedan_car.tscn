@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://j3x2qme0wdpq"]
+
+[ext_resource type="PackedScene" uid="uid://dkulwcvcxule0" path="res://scenes/car/post_car.tscn" id="1_2ihvk"]
+[ext_resource type="PackedScene" uid="uid://dpdgk7qqp6g7h" path="res://assets/car/sedan/sedan_police.blend" id="2_2ihvk"]
+[ext_resource type="Texture2D" uid="uid://b33rk4vtsj7s0" path="res://assets/car/sedan/sedan_police.png" id="3_8p5ji"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8p5ji"]
+points = PackedVector3Array(-1.23162, -2.0229135, -1.1995364, -1.23162, -1.8206377, -1.01672, -1.23162, 1.2106419, -1.1995364, -1.1518106, -1.9814577, -1.4370346, -1.1518106, -3.4467072, -1.2821302, -1.2140185, -3.5539205, -0.811378, -1.2299322, -2.057222, -0.97362757, -1.23162, -1.3960726, -0.8681817, -1.23162, 1.2106419, -0.8681817, -1.2140185, 3.5536118, -0.7797116, -1.1518106, 3.4321032, -1.2142271, -1.1518106, 1.2106419, -1.4370346, -0.87500954, -1.3503282, -2.019109, -0.00024104118, -3.5017433, -1.2821302, -0.00024104118, -3.637547, -0.811378, -0.00024104118, -1.4117973, -2.019109, -1.179539, -3.523186, -0.55021167, -1.1720643, -1.1652064, -0.35172534, -1.2205286, -1.31602, -0.77089727, -1.1720643, 1.2106419, -0.35172534, -1.179539, 3.5221624, -0.47251475, -0.00024104118, 3.6643987, -0.7797116, -0.00024104118, 3.5278802, -1.2142271, -0.00024104118, 0.5151844, -2.019109, -0.87500954, 0.41011524, -2.019109, 1.1515695, -3.4467072, -1.2821302, -0.00024104118, -3.6018093, -0.55021167, 1.2137774, -3.5539205, -0.811378, 1.1790568, -3.523186, -0.55021167, 0.8747684, -1.3503282, -2.019109, 1.1718234, -1.1652064, -0.35172534, -1.1674831, 1.4915409, -0.35156202, -0.00024104118, 3.6279464, -0.47251475, 1.1790568, 3.5221624, -0.47251475, 1.2137774, 3.5536118, -0.7797116, 1.1515695, 3.4321032, -1.2142271, 0.8747684, 0.41011524, -2.019109, 1.1515695, -1.9814577, -1.4370346, 1.23162, -2.0229135, -1.1995364, 1.2296911, -2.057222, -0.97362757, 1.23162, -1.3960726, -0.8681817, 1.1718234, 1.2106419, -0.35172534, 1.1672422, 1.4915409, -0.35156202, 1.23162, 1.2106419, -0.8681817, 1.23162, 1.2106419, -1.1995364, 1.1515695, 1.2106419, -1.4370346, 1.23162, -1.8206377, -1.01672)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyp1m"]
+albedo_texture = ExtResource("3_8p5ji")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p5ji"]
+resource_name = "car8_mat"
+cull_mode = 2
+albedo_texture = ExtResource("3_8p5ji")
+roughness = 0.89459074
+texture_filter = 2
+
+[node name="Car" unique_id=157446224 instance=ExtResource("1_2ihvk")]
+mass = 700.0
+center_of_mass = Vector3(0, -0.5, 0)
+WHEEL_RADIUS = 0.4
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=1400672102]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0017228127, -0.79159874, -7.9631805e-05)
+shape = SubResource("ConvexPolygonShape3D_8p5ji")
+
+[node name="sedan_police" parent="." index="1" unique_id=1301119601 instance=ExtResource("2_2ihvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017228127, -0.79159874, -7.9631805e-05)
+
+[node name="Car5_Police_002" parent="sedan_police" index="2" unique_id=2051237182]
+surface_material_override/0 = SubResource("StandardMaterial3D_dyp1m")
+
+[node name="Car5_Police_003" parent="sedan_police" index="3" unique_id=356548706]
+surface_material_override/0 = SubResource("StandardMaterial3D_8p5ji")
+
+[node name="Car" parent="." index="2" unique_id=876219567]
+visible = false
+
+[node name="WheelContainer" parent="." index="3" unique_id=1980306076]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.056267083, -0.033699)
+
+[node name="WheelFL" parent="WheelContainer" index="0" unique_id=361838452]
+transform = Transform3D(-0.00064435723, -0.00029168391, 0.8549997, 0.00076862396, 0.8549996, 0.00029226317, -0.8549994, 0.0007688439, -0.00064409466, -2.2500226, -0.061505407, 1.10147)
+
+[node name="WheelFR" parent="WheelContainer" index="1" unique_id=1175197496]
+transform = Transform3D(-0.00064435723, -0.00029168391, 0.8549997, 0.00076862396, 0.8549996, 0.00029226317, -0.8549994, 0.0007688439, -0.00064409466, -2.2516825, -0.059527695, -1.09853)
+
+[node name="WheelBL" parent="WheelContainer" index="2" unique_id=1936977691]
+transform = Transform3D(-0.00064435723, -0.00029168391, 0.8549997, 0.00076862396, 0.8549996, 0.00029226317, -0.8549994, 0.0007688439, -0.00064409466, 1.7919815, -0.060167596, 1.09853)
+
+[node name="WheelBR" parent="WheelContainer" index="3" unique_id=1734980355]
+transform = Transform3D(-0.00064435723, -0.00029168391, 0.8549997, 0.00076862396, 0.8549996, 0.00029226317, -0.8549994, 0.0007688439, -0.00064409466, 1.7903216, -0.0581899, -1.10147)
+
+[node name="FL" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="0" unique_id=2000432803]
+transform = Transform3D(-1, 4.2528172e-05, 0.0003346177, 4.22973e-05, 0.99999976, -0.000689949, -0.000334647, -0.0006899348, -0.99999976, 0.9678265, 0.19213703, 3.4975595)
+
+[node name="FR" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="1" unique_id=76863513]
+transform = Transform3D(-1, 4.2528172e-05, 0.0003346177, 4.22973e-05, 0.99999976, -0.000689949, -0.000334647, -0.0006899348, -0.99999976, -0.968, 0.192, 3.498)
+
+[node name="BL" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="2" unique_id=1823427407]
+transform = Transform3D(-1, 4.2528172e-05, 0.0003346177, 4.22973e-05, 0.99999976, -0.000689949, -0.000334647, -0.0006899348, -0.99999976, 0.958, 0.186, -3.54)
+
+[node name="BR" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="3" unique_id=494815781]
+transform = Transform3D(-1, 4.2528172e-05, 0.0003346177, 4.22973e-05, 0.99999976, -0.000689949, -0.000334647, -0.0006899348, -0.99999976, -0.95759916, 0.18645588, -3.5402174)
+
+[node name="BrakeLightR" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="4" unique_id=1411176700]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.93055224, 0.1887019, -3.5399976)
+
+[node name="BrakeLightL" parent="Lights" parent_id_path=PackedInt32Array(486727849) index="5" unique_id=1239319043]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.931, 0.189, -3.54)
+
+[node name="Node3D" type="Node3D" parent="." index="6" unique_id=754643883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+
+[editable path="sedan_police"]
+[editable path="Car"]

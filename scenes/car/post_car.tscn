@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkulwcvcxule0"]
 
 [ext_resource type="Script" uid="uid://5nddvny0l6mp" path="res://scripts/car/car.gd" id="1_yr3gr"]
-[ext_resource type="PackedScene" uid="uid://o1v7x8f85gin" path="res://assets/car/car.tscn" id="2_rytg7"]
+[ext_resource type="PackedScene" uid="uid://o1v7x8f85gin" path="res://assets/car/postcar/car.tscn" id="2_rytg7"]
 [ext_resource type="PackedScene" uid="uid://d21flfci42sg1" path="res://scenes/car/wheel.tscn" id="2_yhfra"]
 [ext_resource type="Script" uid="uid://2dkcppaxutdd" path="res://scripts/car/lights.gd" id="4_x7uf8"]
 [ext_resource type="AudioStream" uid="uid://gqmqlg1j2nl2" path="res://assets/car/audio/engine_loop.wav" id="5_tcn38"]
@@ -22,7 +22,7 @@ script = ExtResource("1_yr3gr")
 transform = Transform3D(1, 1.06581e-14, -3.81165e-21, 0, -3.57628e-07, -1, -1.06581e-14, 1, -3.57628e-07, 0, -0.976383, 0)
 shape = SubResource("ConvexPolygonShape3D_rytg7")
 
-[node name="Car" parent="." unique_id=935806451 instance=ExtResource("2_rytg7")]
+[node name="Car" parent="." unique_id=876219567 instance=ExtResource("2_rytg7")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0, -0.976383, 0)
 
 [node name="WheelContainer" type="Node3D" parent="." unique_id=1980306076]

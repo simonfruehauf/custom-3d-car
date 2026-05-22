@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunmjohshfa2j"
-path.s3tc="res://.godot/imported/Car_mail.png-2dbf43323862064cf791fe770a971ba4.s3tc.ctex"
+uid="uid://c3hyc0gyg5dys"
+path.s3tc="res://.godot/imported/Car.png-a67fc0715aec66dc9f3d3f08da33370f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/car/Car_mail.png"
-dest_files=["res://.godot/imported/Car_mail.png-2dbf43323862064cf791fe770a971ba4.s3tc.ctex"]
+source_file="res://assets/car/postcar/Car.png"
+dest_files=["res://.godot/imported/Car.png-a67fc0715aec66dc9f3d3f08da33370f.s3tc.ctex"]
 
 [params]
 
